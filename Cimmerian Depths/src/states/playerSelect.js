@@ -2,9 +2,10 @@ CimmerianDepths.playerSelectState = function(game) {
 
 }
 
- function changeToSelected(phaserText)
+ function changeToSelected()
     {
         //phaserText.fontStyles= this.selectedTextStyle;
+     alert("hello");
     }
 
     function changeToUnselected(phaserText)
@@ -24,7 +25,7 @@ CimmerianDepths.playerSelectState.prototype = {
 
         this.equipar= new createButton(100, game.height*0.66, "EQUIPAR", this.unselectedTextStyle,
          function(){game.state.start("equipmentState")});
-         //this.equipar.setOnClick(changeToSelected(this.equipar));
+         this.equipar.setOnOver(changeToSelected);
 
          this.jugar= new createButton(game.width/2, game.height-30, "JUGAR", this.unselectedTextStyle);
         
