@@ -9,7 +9,8 @@ CimmerianDepths.playerSelectState.prototype = {
     },
 
     create: function() {
-
+    	game.state.start('equipmentState');
+    	//game.state.start('dungeonState');
     },
 
     update: function() {

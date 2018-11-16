@@ -9,7 +9,7 @@ CimmerianDepths.dungeonState.prototype = {
     },
 
     create: function() {
-
+		game.state.start('endingState');
     },
 
     update: function() {

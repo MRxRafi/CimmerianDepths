@@ -1,15 +1,16 @@
-Baptistery.equipmentState = function(game) {
+CimmerianDepths.equipmentState = function(game) {
 
 }
 
-Baptistery.equipmentState.prototype = {
+CimmerianDepths.equipmentState.prototype = {
 
     preload: function() {
         
     },
 
     create: function() {
-
+    	game.state.start('dungeonState');
+    	//game.state.start('playerSelectState');
     },
 
     update: function() {
