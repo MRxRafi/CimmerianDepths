@@ -1,23 +1,30 @@
 
 
-function createButton(posX, posY, text, style, onClickCallback, onMouseOverCallback)
+function createButton(posX, posY, text, onOverStyle, onOutStyle, onClickCallback)
 {
-    this.text =game.add.text(posX, posY, text, style);
+    this.text =game.add.text(posX, posY, text, onOutStyle);
     this.text.inputEnabled= true;
     this.text.anchor.x= 0.5;      this.text.anchor.y = 0.5;
 
-    if(onClickCallback !=null)
+    if(onClickCallback !=undefined)
     this.text.events.onInputDown.add(onClickCallback,this);
-    if(onMouseOverCallback !=null)
-    this.text.events.onInputOver.add(onMouseOverCallback, this);
 
-    
+
     this.setOnClick= function(callback)
     {
         this.text.events.onInputDown.add(callback,this);
     }
-    this.setOnOver= function(callback)
+
+    
+    this.text.events.onInputOver.add(function()
     {
-        this.text.events.onInputOver.add(callback, this);
-    }
+        this.text.fill= "rgb(255,255,255)";
+
+    }, this);
+
+    this.text.events.onInputOut.add(function()
+    {
+
+        this.text.fill= "rgb(155,155,155)";
+    },this);
 }
