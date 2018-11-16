@@ -26,5 +26,6 @@ CimmerianDepths.dungeonState.prototype = {
 
     update: function() {
         personaje.updateInputs();
+	personaje.updateAnimations();
     }
 }
