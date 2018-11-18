@@ -52,6 +52,8 @@ CimmerianDepths.preloadState.prototype = {
         	() => WebFont.load(WebFontConfig));   
     },
     loadAssets: function(){
-        
+        game.load.image('bg', "/assets/debug.png"); //Background de prueba
+        game.load.spritesheet('player', "/assets/pruebaPersonaje.png",30, 49, 36); //Personaje
+        game.load.image('bs', "/assets/button-sprite.png"); //Boton blanco de prueba
     }
 }

@@ -1,6 +1,8 @@
 function Jugador(x, y, sprsheet){
     //Variables públicas
     this.sprite = game.add.sprite(x, y, sprsheet);
+    this.objeto = 0;
+
 
     //Variables privadas
     var leftAnimation = this.sprite.animations.add('walkLeft', [0, 1, 2, 3, 4, 5, 6, 7, 8]);
@@ -50,6 +52,10 @@ function Jugador(x, y, sprsheet){
         if (left) { this.sprite.animations.play('walkLeft', 30, true); } else { this.sprite.animations.stop('walkLeft', true); }
         if (right) { this.sprite.animations.play('walkRight', 30, true); } else { this.sprite.animations.stop('walkRight', true); }
         up = down = right = left = false; //Reiniciamos variables
+    }
+
+    this.debug = function(){ //Para debug, borrar en futuras versiones
+        console.log(this.objeto);
     }
 
     //Activamos físicas arcade para el personaje

@@ -1,4 +1,4 @@
-game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameDiv')
+game = new Phaser.Game(1024, 768, Phaser.AUTO, 'gameDiv')
   
 game.state.add('bootState', CimmerianDepths.bootState)
 game.state.add('preloadState', CimmerianDepths.preloadState)
