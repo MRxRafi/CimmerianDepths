@@ -4,6 +4,7 @@ CimmerianDepths.dungeonState = function (game) {
 
 var personaje;
 var objeto;
+var map;
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -15,14 +16,15 @@ CimmerianDepths.dungeonState.prototype = {
         //Límites del mundo para la cámara
         game.world.setBounds(0, 0, 2240, 2240);
 
-        var bg = game.add.sprite(0, 0, 'bg');
+        map = new Mapa();
+        map.createMap();
 
-        personaje = new Jugador(50, 50, 'player');
+        personaje = new Jugador(300, 300, 'player');
         personaje.createInputs();
 
         objeto = new Item(5);
 
-        //Cámara sigue al jugador
+        //Cosas de la cámara
         game.camera.follow(personaje.sprite, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     },
 
@@ -41,5 +43,9 @@ function checkCollisions(){
             personaje.debug();
         }
     }
+
+    //Colisión jugador - mapa
+    game.physics.arcade.collide(personaje.sprite, map.layers[0]);
+    game.physics.arcade.collide(personaje.sprite, map.layers[1]);
     
 }

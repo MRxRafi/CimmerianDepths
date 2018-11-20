@@ -55,5 +55,8 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('bg', "/assets/debug.png"); //Background de prueba
         game.load.spritesheet('player', "/assets/pruebaPersonaje.png",30, 49, 36); //Personaje
         game.load.image('bs', "/assets/button-sprite.png"); //Boton blanco de prueba
+
+        game.load.tilemap('mapa', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('map_tiles', 'assets/DungeonSpSheet32.png');
     }
 }
