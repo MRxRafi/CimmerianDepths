@@ -38,8 +38,8 @@ CimmerianDepths.dungeonState.prototype = {
 
 function checkCollisions(){
     if(objeto.sprite && personaje.sprite){
-        if(game.physics.arcade.collide(personaje.sprite, objeto.sprite)&& personaje.space.isDown){
-            objeto.recoger(personaje);
+        if(game.physics.arcade.collide(personaje.sprite, objeto.sprite) && personaje.space.isDown){
+            personaje.pickUp(objeto);
             personaje.debug();
         }
     }
