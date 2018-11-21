@@ -14,7 +14,7 @@ CimmerianDepths.dungeonState.prototype = {
 
     create: function () {
         //Límites del mundo para la cámara
-        game.world.setBounds(0, 0, 2240, 2240);
+        game.world.setBounds(0, 0, 4480, 4480);
 
         map = new Mapa();
         map.createMap();
