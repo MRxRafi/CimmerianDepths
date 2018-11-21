@@ -32,7 +32,8 @@ CimmerianDepths.playerSelectState.prototype = {
         this.equipar= new createButton(100, game.height*0.66, "EQUIPAR",this.onOverTextStyle, this.onOutTextStyle,
          function(){game.state.start("equipmentState")});
         
-         this.jugar= new createButton(game.width/2, game.height-30, "JUGAR",this.onOverTextStyle, this.onOutTextStyle);
+        this.jugar= new createButton(game.width/2, game.height-30, "JUGAR",this.onOverTextStyle, this.onOutTextStyle,
+         function(){game.state.start("dungeonState")});
 
     },
 
