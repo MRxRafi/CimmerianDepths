@@ -2,7 +2,8 @@ function Jugador(x, y, sprsheet){
     //Variables públicas
     this.sprite = game.add.sprite(x, y, sprsheet);
     this.objeto = 0;
-
+    this.recipes= [];
+    this.forjados= [];
 
     //Variables privadas
     var leftAnimation = this.sprite.animations.add('walkLeft', [0, 1, 2, 3, 4, 5, 6, 7, 8]);
@@ -14,14 +15,14 @@ function Jugador(x, y, sprsheet){
     var down = false;/* Por defecto, todas desactivadas */
     var left = false;
     var right = false;
-this.space;
+    this.space;
     //Creamos controles del jugador
     this.createInputs = function () {
         this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         this.dKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
-          this.space= game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+       this.space= game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     }
 
     this.updateInputs = function (){
@@ -55,13 +56,26 @@ this.space;
         up = down = right = left = false; //Reiniciamos variables
     }
 
+
     this.debug = function(){ //Para debug, borrar en futuras versiones
         console.log(this.objeto);
     }
+
+
+    this.pickUp= function(item)
+    {
+        this.objeto += item.numero;
+        item.sprite.destroy();
+    }
+
 
     //Activamos físicas arcade para el personaje
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     this.sprite.body.immovable = true;
 
     this.sprite.body.setSize(this.sprite.width / 2 + 10, this.sprite.height / 2, this.sprite.width / 2 - 13, this.sprite.height / 2);
+
+
+
+
 }
