@@ -14,13 +14,14 @@ function Jugador(x, y, sprsheet){
     var down = false;/* Por defecto, todas desactivadas */
     var left = false;
     var right = false;
-
+this.space;
     //Creamos controles del jugador
     this.createInputs = function () {
         this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         this.dKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+          this.space= game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     }
 
     this.updateInputs = function (){
