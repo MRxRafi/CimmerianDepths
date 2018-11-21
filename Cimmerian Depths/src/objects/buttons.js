@@ -1,8 +1,6 @@
-
-
-function createButton(posX, posY, text, onOverStyle, onOutStyle, onClickCallback)
+function createButton(posX, posY, text, style, onClickCallback)
 {
-    this.text =game.add.text(posX, posY, text, onOutStyle);
+    this.text =game.add.text(posX, posY, text, style);
     this.text.inputEnabled= true;
     this.text.anchor.x= 0.5;      this.text.anchor.y = 0.5;
 
