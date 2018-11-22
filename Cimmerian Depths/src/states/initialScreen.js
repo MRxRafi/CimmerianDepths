@@ -8,7 +8,7 @@ CimmerianDepths.initialScreenState = function (game) {
 
     this.isIncreasing;
 }
-
+var personaje;
 var pressed;
 
 CimmerianDepths.initialScreenState.prototype = {
