@@ -2,9 +2,10 @@ CimmerianDepths.dungeonState = function (game) {
 
 }
 
-var jugador;
+var personaje;
 var objeto;
 var map;
+var interfaz;
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -19,33 +20,39 @@ CimmerianDepths.dungeonState.prototype = {
         map = new Mapa();
         map.createMap();
 
-        jugador = new Jugador(300, 300, 'player');
-        jugador.createInputs();
+        personaje = new Jugador(400, 300, 'player');
+        personaje.createInputs();
 
-        objeto = new Item(5);
+        objeto = new Item(-10);
+
+        interfaz = new Interfaz(personaje);
+        interfaz.create();
 
         //Cosas de la cámara
-        game.camera.follow(jugador.sprite, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+        game.camera.follow(personaje.sprite, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     },
 
     update: function () {
-        jugador.updateInputs();
-        jugador.updateAnimations();
+        personaje.updateInputs();
+        personaje.updateAnimations();
 
         checkCollisions();
+
+        interfaz.update();
     }
 }
 
 function checkCollisions(){
-    if(objeto.sprite && jugador.sprite){
-        if(game.physics.arcade.collide(jugador.sprite, objeto.sprite) && jugador.space.isDown){
-            jugador.pickUp(objeto);
-            jugador.debug();
+    
+    if(objeto.sprite && personaje.sprite){
+        if(game.physics.arcade.collide(personaje.sprite, objeto.sprite) && personaje.space.isDown){
+            personaje.pickUp(objeto);
+            personaje.debug();
         }
     }
-
+    
     //Colisión jugador - mapa
-    game.physics.arcade.collide(jugador.sprite, map.layers[0]);
-    game.physics.arcade.collide(jugador.sprite, map.layers[1]);
+    game.physics.arcade.collide(personaje.sprite, map.layers[0]);
+    game.physics.arcade.collide(personaje.sprite, map.layers[1]);
     
 }

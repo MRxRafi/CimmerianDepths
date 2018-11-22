@@ -1,7 +1,8 @@
 function Jugador(x, y, sprsheet){
     //Variables públicas
     this.sprite = game.add.sprite(x, y, sprsheet);
-    this.objeto = 0;
+    this.vida = 100;
+    this.maxVida = 100;
     this.recipes= [];
     this.forjados= [];
 
@@ -58,14 +59,15 @@ function Jugador(x, y, sprsheet){
 
 
     this.debug = function(){ //Para debug, borrar en futuras versiones
-        console.log(this.objeto);
+        console.log(this.vida);
     }
 
 
     this.pickUp= function(item)
     {
-        this.objeto += item.numero;
+        this.vida += item.numero;
         item.sprite.destroy();
+        delete item;
     }
 
 
