@@ -53,7 +53,7 @@ CimmerianDepths.preloadState.prototype = {
     },
     loadAssets: function(){
         game.load.image('bg', "/assets/debug.png"); //Background de prueba
-        game.load.spritesheet('player', "/assets/pruebaPersonaje.png",30, 49, 36); //Personaje
+        game.load.spritesheet('player', "/assets/personajeSpSheet.png",64, 96, 28); //Personaje
         game.load.image('bs', "/assets/button-sprite.png"); //Boton blanco de prueba
         game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
         game.load.image('bufo', "/assets/bufo.png"); //Bufos
