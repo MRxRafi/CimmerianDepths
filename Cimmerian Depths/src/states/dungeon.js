@@ -5,6 +5,8 @@ CimmerianDepths.dungeonState = function (game) {
 var jugador;
 var objeto;
 var map;
+var interfaz;
+var oscuridad;
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -22,8 +24,11 @@ CimmerianDepths.dungeonState.prototype = {
         jugador = new Jugador(300, 300, 'player');
         jugador.createInputs();
 
-        objeto = new Item(5);
+        objeto = new Item(-10);
 
+        interfaz = new Interfaz(personaje);
+        interfaz.create();
+        
         //Cosas de la cámara
         game.camera.follow(jugador.sprite, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     },
@@ -33,6 +38,8 @@ CimmerianDepths.dungeonState.prototype = {
         jugador.updateAnimations();
 
         checkCollisions();
+        
+        interfaz.update();
     }
 }
 
