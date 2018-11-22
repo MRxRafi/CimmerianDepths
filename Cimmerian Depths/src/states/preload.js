@@ -58,5 +58,17 @@ CimmerianDepths.preloadState.prototype = {
 
         game.load.tilemap('mapa', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('map_tiles', 'assets/DungeonSpSheet.png');
+	    
+	     //loads para equipmentState
+        game.load.image('iconBg',"assets/Interfaz/icon-background.png");
+        game.load.image('BaulBg', 'assets/Interfaz/Baul.png');
+        game.load.image('pjBg', 'assets/Interfaz/menuPersonaje.png');
+        game.load.image('titleScreenBG', "assets/Interfaz/titleScreenBG.png");
+        game.load.image('antorcha', "assets/antorcha.png");
+        game.load.image('botonJugar', "assets/Interfaz/botonJugar.png");
+        game.load.image('botonCancelar', "assets/Interfaz/botonCancelar.png");
+        game.load.image('botonAceptar', "assets/Interfaz/botonAceptar.png");
+        game.load.image('botonEquipar', "assets/Interfaz/botonEquipar.png");
+        game.load.image('inventarioBg', "assets/Interfaz/menuInventario.png");
     }
 }
