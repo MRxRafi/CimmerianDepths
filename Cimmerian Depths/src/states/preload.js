@@ -52,8 +52,6 @@ CimmerianDepths.preloadState.prototype = {
         	() => WebFont.load(WebFontConfig));   
     },
     loadAssets: function(){
-        game.load.image('bg', "/assets/debug.png"); //Background de prueba
-        game.load.spritesheet('player', "/assets/pruebaPersonaje.png",30, 49, 36); //Personaje
         game.load.image('bs', "/assets/button-sprite.png"); //Boton blanco de prueba
 
         game.load.tilemap('mapa', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
@@ -70,5 +68,13 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('botonAceptar', "assets/Interfaz/botonAceptar.png");
         game.load.image('botonEquipar', "assets/Interfaz/botonEquipar.png");
         game.load.image('inventarioBg', "assets/Interfaz/menuInventario.png");
+	    
+	// Assets Dungeon
+	game.load.spritesheet('player', "/assets/personajeSpSheet.png",64, 96, 28); //Personaje
+        game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
+        game.load.image('bufo', "/assets/bufo.png"); //Bufos
+        game.load.image('mochila', "/assets/mochila.png"); //Bufos
+        game.load.spritesheet('oscuridad_antorcha', "/assets/oscuridad_antorcha_anim.png", 2048, 1536, 4); //Oscuridad circundante al personaje con antorcha
+        game.load.spritesheet('oscuridad', "/assets/oscuridad_anim.png", 2048, 1536, 4); //Oscuridad circundante al personaje sin antorcha
     }
 }
