@@ -26,7 +26,7 @@ CimmerianDepths.dungeonState.prototype = {
 
         objeto = new Item(-10);
 
-        interfaz = new Interfaz(personaje);
+        interfaz = new Interfaz(jugador);
         interfaz.create();
         
         //Cosas de la cámara

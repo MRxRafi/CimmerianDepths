@@ -1,5 +1,7 @@
 function Jugador(x, y, sprsheet){
     //Variables públicas
+    this.vida = 100;
+    this.maxVida = 100;
     this.sprite = game.add.sprite(x, y, sprsheet);
     this.objeto = 0;
     this.recipes= [];
