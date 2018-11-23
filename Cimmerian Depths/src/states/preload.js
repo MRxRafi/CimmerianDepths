@@ -68,6 +68,7 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('botonAceptar', "assets/Interfaz/botonAceptar.png");
         game.load.image('botonEquipar', "assets/Interfaz/botonEquipar.png");
         game.load.image('inventarioBg', "assets/Interfaz/menuInventario.png");
+	game.load.image('statsBg', "assets/Interfaz/menuEstadisticas.png");
 	    
 	// Assets Dungeon
 	game.load.spritesheet('player', "/assets/personajeSpSheet.png",64, 96, 28); //Personaje
