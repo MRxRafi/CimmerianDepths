@@ -6,6 +6,8 @@ function Interfaz(jugador){
     var barConfig;
     var anteriorVida;
     var barExp, barMana;
+    var barForj, barRec;
+    var invForj, invRec;
     var mochila;
     var bufos = new Array();
     var texto_estadisticas = new Array();
@@ -60,9 +62,47 @@ function Interfaz(jugador){
         ////// FIN BUFOS //////
 
         ////// BARRA DE FORJADOS //////
+        barForj = game.add.sprite(game.camera.x + 210, game.camera.y + game.camera.height - 74, 'inventarioBg');
+        barForj.anchor.x = 0.5; barForj.anchor.y = 0.5;
+        barForj.scale.setTo(1.15, 1.15);
+        barForj.alpha = 0.6;
+        grupo.add(barForj);
+        barForj.fixedToCamera = true;
+
+        invForj = new Inventario(barForj.x - 125, barForj.y, 10, 10, 1, 5, 52);
+        
+        var forjado;
+        for(var i = 0; i < invForj.cols; i++){
+            if(personaje.forgedInventory.iconNamesArray[0][i] != undefined) { forjado = personaje.forgedInventory.iconNamesArray[0][i]; invForj.addItem(0,i,forjado); }
+        }
+        invForj.Show();
+        for(var i = 0; i < invForj.cols; i++){
+            grupo.add(invForj.icons[0][i].background);
+            invForj.icons[0][i].background.fixedToCamera = true;
+        }
+        
         ////// FIN BARRA DE FORJADOS //////
 
         ////// BARRA DE RECETAS //////
+        barRec = game.add.sprite(game.camera.width + game.camera.x - 74, game.camera.y + 270, 'inventarioBg');
+        barRec.anchor.x = 0.5; barRec.anchor.y = 0.5;
+        barRec.scale.setTo(1.1, 1.1);
+        barRec.angle = 90;
+        barRec.alpha = 0.6;
+        grupo.add(barRec);
+        barRec.fixedToCamera = true;
+
+        invRec = new Inventario(barRec.x, barRec.y - 125, 10, 10, 5, 1, 52);
+        
+        var recipe;
+        for(var i = 0; i < invRec.rows; i++){
+            if(personaje.recipeInventory.iconNamesArray[0][i] != undefined) { recipe = personaje.recipeInventory.iconNamesArray[0][i]; invRec.addItem(i,0,recipe); }
+        }
+        invRec.Show();
+        for(var i = 0; i < invRec.rows; i++){
+            grupo.add(invRec.icons[i][0].background);
+            invRec.icons[i][0].background.fixedToCamera = true;
+        }
         ////// FIN BARRA DE RECETAS //////
 
         ////// ESTADÍSTICAS //////
@@ -121,6 +161,7 @@ function Interfaz(jugador){
             healthBar.setPercent((jugador.vida * 100)/jugador.maxVida);
             anteriorVida = jugador.vida;
         }
+        //game.world.bringToTop(iconsGroup);
         game.world.bringToTop(grupo);
     }
 }
