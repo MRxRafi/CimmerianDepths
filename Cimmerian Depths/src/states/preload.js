@@ -74,8 +74,10 @@ CimmerianDepths.preloadState.prototype = {
 	game.load.spritesheet('player', "/assets/personajeSpSheet.png",64, 96, 28); //Personaje
         game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
         game.load.image('bufo', "/assets/bufo.png"); //Bufos
+	//Bufo es un género de anfibios anuros de la familia Bufonidae que incluye, entre otros, al sapo europeo común.
         game.load.image('mochila', "/assets/mochila.png"); //Icono mochila interfaz
         //game.load.image('forj_antorcha', "/assets/antorcha.png"); //Icono antorcha
+	game.load.image('salida', "/assets/Salida.png");//Salida
         game.load.image('mat_palos', "/assets/palos.png"); //Icono mochila interfaz
         game.load.spritesheet('oscuridad_antorcha', "/assets/oscuridad_antorcha_anim.png", 2048, 1536, 4); //Oscuridad circundante al personaje con antorcha
         game.load.spritesheet('oscuridad', "/assets/oscuridad_anim.png", 2048, 1536, 4); //Oscuridad circundante al personaje sin antorcha
