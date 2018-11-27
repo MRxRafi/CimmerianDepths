@@ -1,13 +1,13 @@
 function Jugador(x, y, sprsheet){
-    //Variables públicas
+    //VARIABLES PÚBLICAS
     this.vida = 100;
     this.maxVida = 100;
     this.sprite = game.add.sprite(x, y, sprsheet);
-    this.objeto = 0;
     this.recipes= [];
     this.forjados= [];
+    this.textItems = [];
 
-    //Variables privadas
+    //VARIABLES PRIVADAS
     var leftAnimation = this.sprite.animations.add('walkLeft', [7, 8, 9, 10, 7, 11, 12, 13]);
     var upAnimation = this.sprite.animations.add('walkUp', [14, 15, 16, 17, 14, 18, 19, 20]);
     var downAnimation = this.sprite.animations.add('walkDown', [0, 1, 2, 3, 0, 4, 5, 6]);
@@ -17,14 +17,18 @@ function Jugador(x, y, sprsheet){
     var down = false;/* Por defecto, todas desactivadas */
     var left = false;
     var right = false;
-    this.space;
-    //Creamos controles del jugador
+    //this.space;
+
+    //MATERIALES
+    this.palos = 0;
+
+    //FUNCIONES
     this.createInputs = function () {
         this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
         this.dKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
-       this.space= game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.space= game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     }
 
     this.updateInputs = function (){
@@ -63,25 +67,41 @@ function Jugador(x, y, sprsheet){
 
 
     this.debug = function(){ //Para debug, borrar en futuras versiones
-        console.log(this.objeto);
+        //console.log(this.objeto);
     }
 
 
+    /* EXPLICACIÓN:
+     * Una vez alcanzado un item, añade el valor correspondiente y lo destruye.
+     * También muestra un texto al recogerlo.
+     * 
+     * ARGUMENTOS:
+     * item: objeto de la clase Item
+     */
     this.pickUp= function(item)
     {
-        this.vida += item.numero;
-        item.sprite.destroy();
-        delete item;
+        var text;
+        switch(item.tipo){
+            case "vida":
+                this.vida += item.numero;
+                text = "Has recibido " + item.numero + " puntos de vida."
+                break;
+
+            case "palos":
+                this.palos += item.numero;
+                text = "Has recogido " + item.numero + " palo/s."
+                break;
+        }
+        if(text != undefined){
+            this.textItems[this.textItems.length] = new itemText(text, item.sprite.x, item.sprite.y + 20);
+        }
+        item.destroy();
     }
 
 
-    //Activamos físicas arcade para el personaje
+    //FÍSICAS
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     this.sprite.body.immovable = true;
 
     this.sprite.body.setSize(this.sprite.width / 2 + 10, this.sprite.height / 2, this.sprite.width / 2 - 13, this.sprite.height / 2);
-
-
-
-
 }
