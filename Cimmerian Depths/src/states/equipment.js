@@ -28,12 +28,14 @@ CimmerianDepths.equipmentState.prototype = {
             //personaje
             game.add.sprite(game.width/2, 280, 'pjBg');
             //inventarios
+
+            
  
         //Botones
         //((tam_img + x_pannin)* (n_cols +1)) + x_offset +aesthetic
         var x_offset= ((52 + 3) * 6) + 60 + 30;
 
-       this.style= { font: "25px Averia Sans Libre", fill: "rgb(155,155,155)", align: "center" };
+       this.style= { font: "25px Averia Sans Libre", fill: "rgb(180,200,20)", align: "center" };
        
        this.recetasText= new createButton(x_offset,100,"Recetas",this.style);
 
@@ -52,19 +54,20 @@ CimmerianDepths.equipmentState.prototype = {
         personaje= new Personaje();
    
 
-
-        personaje.recipeInventory= new Inventario(x_offset+100, 100, 3, 3, 1, 5, 'iconBg', 52);
+        personaje.createRecipeInv(x_offset+100, 100, 3, 3, 1, 5, 52);
+       // personaje.recipeInventory= new Inventario(x_offset+100, 100, 3, 3, 1, 5, 52);
         personaje.recipeInventory.Show();
 
-        personaje.forgedInventory= new Inventario(x_offset+100, 200, 3, 3, 1, 5, 'iconBg', 52);
+        personaje.createForgedInv(x_offset+100, 200, 3, 3, 1, 5, 52);
+       // personaje.forgedInventory= new Inventario(x_offset+100, 200, 3, 3, 1, 5, 52);
         personaje.forgedInventory.Show();
 
         //Cajon Recetas (o de lo que sea)
  
-        personaje.cajonRecipes= new Inventario(60, game.height*0.4+100, 3, 3, 4, 5, 'iconBg', 52);
-        personaje.addToCajonForged('antorcha');
-        personaje.cajonRecipes.givenInventory= personaje.cajonForgedArray;
-        personaje.cajonRecipes.Show();
+        personaje.createCajonForged(60, game.height*0.4+100, 3, 3, 4, 5, 52);
+        //personaje.cajonForged= new Inventario(60, game.height*0.4+100, 3, 3, 4, 5, 52);
+        personaje.addToCajonForged(0,0,'antorcha');
+        personaje.cajonForged.Show();
 
         game.world.bringToTop(iconsGroup);
 
