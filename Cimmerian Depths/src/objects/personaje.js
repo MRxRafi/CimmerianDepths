@@ -1,107 +1,130 @@
-function Personaje()
-{
-    this.recipeInventory;
-    this.forgedInventory;
-    this.equipmentInventory;
+function Personaje() {
+  this.recipeInventory;
+  this.forgedInventory;
+  this.equipmentInventory;
 
-    this.cajonRecipes;
-    this.cajonForged;
-    this.cajonEquipment;
+  this.cajonRecipes;
+  this.cajonForged;
+  this.cajonEquipment;
 
-    this.maxRecipes=5;
-    this.maxForged=5;
-    this.maxEquipment=5;
-
-    this.currentRecipe=0;
-    this.currentForged=0;
-    this.currentEquipment=0;
-
-    this.currentCajonRecipes= 0;
-    this.currentCajonForged= 0;
-    this.currentCajonEquipment= 0;
-
-    this.recipeArray=[];
-    this.forgedArray=[];
-    this.equipmentArray=[];
-
-    this.cajonRecipesArray= [];
-    this.cajonForgedArray= [];
-    this.cajonEquipmentArray= [];
-
-    this.addToCajonForged= function(obj_sprite)
-    {
-      this.cajonForgedArray[this.currentCajonForged] = obj_sprite;
-      this.currentCajonForged++;
-    }
-
-this.addToRecipes= function(obj)
-{
-  if(this.currentRecipe < this.maxRecipes -1)
-  {
-    this.recipeArray[this.currentRecipe]=obj;
-    this.currentRecipe ++;
-  }  else return -1;
-}
-
-this.addToForged= function(obj)
-{
-    if(this.currentForged < this.maxForged -1)
-    {
-      this.forgedArray[this.currentForged]= obj;
-      this.currentForged ++;
-    }  else return -1;
-}
-
-this.addToEquipment= function(obj)
-{
-    if(this.currentEquipment < this.maxEquipment -1)
-    {
-      this.equipmentArray[this.currentEquipment]= obj;
-      this.currentEquipment ++;
-    }  else return -1;
-}
-
-
-this.swapRecipes= function(iPos,jPos, target_sprite, alreadyLooked)
-{
-var whereToLook;
-if(alreadyLooked === this.cajonRecipes)
-{
-  whereToLook= this.recipeInventory;
-}else
-{
-  whereToLook= this.cajonRecipes;
-}
-
-  var found=false;
- for(i=0; i< whereToLook.rows; i++)
-  {
-    for(j=0; j< whereToLook.cols; j++)
-    {
-
-      if(whereToLook.icons[i][j].sprite=== target_sprite)
-      {
-        var auxInventory= target_sprite;
-        var auxCajon =  alreadyLooked.icons[iPos][jPos].sprite;
-
-        var cajonCoordX= alreadyLooked.icons[iPos][jPos].coords[0];
-        var cajonCoordY= alreadyLooked.icons[iPos][jPos].coords[1];
-  
-        var inventoryCoordX= whereToLook.icons[i][j].coords[0];
-        var inventoryCoordY= whereToLook.icons[i][j].coords[1];
-  
-        whereToLook.icons[i][j].sprite=auxCajon;
-        alreadyLooked.icons[iPos][jPos].sprite= auxInventory;
-  
-        whereToLook.icons[i][j].setToInterfazCoords(inventoryCoordX,inventoryCoordY);
-        alreadyLooked.icons[iPos][jPos].setToInterfazCoords(cajonCoordX,cajonCoordY);
-
-        found=true;
-        break;
-      }
-    }
-    if(found===true) break;
+  //inventarios
+  this.createRecipeInv = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.recipeInventory = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "inventory", "recipe");
   }
-  return found;
+  this.createForgedInv = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.forgedInventory = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "inventory", "forged");
+  }
+  this.createEquipmentInv = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.equipmentInventory = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "inventory", "equipment");
+  }
+
+  //cajones
+  this.createCajonRecipes = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.cajonRecipes = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "baul", "recipe");
+  }
+  this.createCajonForged = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.cajonForged = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "baul", "forged");
+  }
+  this.createCajonEquipment = function (x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam) {
+    this.cajonEquipment = new Inventario(x_init, y_init, x_paddin, y_paddin, rows, cols, sprite_tam, "baul", "equipment");
+  }
+
+  //Añadir a  recipes
+  this.addToRecipesInv = function (x, y, itemName) {
+    return this.recipeInventory.addItem(x, y, itemName, "inventory", "recipe");
+  }
+  this.addToForgedInv = function (x, y, itemName) {
+    return this.forgedInventory.addItem(x, y, itemName, "inventory", "forged");
+  }
+
+  this.addToEquipmentInv = function (x, y, itemName) {
+    return this.equipmentInventory.addItem(x, y, itemName, "inventory", "equipment");
+  }
+
+  //Añadir a Cajones
+  this.addToCajonRecipes = function (x, y, itemName) {
+    return this.cajonRecipes.addItem(x, y, itemName, "baul", "recipe");
+  }
+  this.addToCajonForged = function (x, y, itemName) {
+    return this.cajonForged.addItem(x, y, itemName, "baul", "forged");
+  }
+  this.addToCajonEquipment = function (x, y, itemName) {
+    return this.cajonEquipment.addItem(x, y, itemName, "baul", "equipment");
+  }
+
+  this.swapIfNeeded= function(x, y, sprite_name, storedIn, typeOf)
+  {
+    var source;
+    var target;
+    switch (typeOf) {
+      case "recipe":
+        if (storedIn === "inventory") {
+          source = this.recipeInventory;
+          target = this.cajonRecipes;
+        }
+        else {
+          source = this.cajonRecipes;
+          target = this.recipeInventory;
+        }
+        break;
+
+      case "forged":
+        if (storedIn === "inventory") {
+          source = this.forgedInventory;
+          target = this.cajonForged;
+        }
+        else {
+          source = this.cajonForged;
+          target = this.forgedInventory;
+        }
+        break;
+
+      case "equipment":
+        if (storedIn === "inventory") {
+          source = this.equipmentInventory;
+          target = this.cajonEquipment;
+        }
+        else {
+          source = this.cajonEquipment;
+          target = this.equipmentInventory;
+        }
+        break;
+    }
+
+    var needToSwap = false;
+    var tgX;
+    var tgY;
+    for (i = 0; i < target.rows; i++) {
+      for (j = 0; j < target.cols; j++) {
+        if (game.physics.arcade.collide(source.icons[x][y].sprite, target.icons[i][j].background))
+         {
+          needToSwap = true;
+          tgX = i;
+          tgY = j;
+          break;
+        }
+      }
+      if (needToSwap === true) break;
+    }
+
+    if(needToSwap===true)
+    {
+      source.iconNamesArray[x][y] = target.iconNamesArray[tgX][tgY];
+      target.iconNamesArray[tgX][tgY] = sprite_name;
+  
+
+    //borro todos los iconos
+    target.clearIcons();
+    source.clearIcons();
+    //enseño todos los arrays
+      target.Show();
+      source.Show();
+      game.world.bringToTop(iconsGroup);
+    }
+    return needToSwap;
+  }
+
+
+
 }
-}
+
