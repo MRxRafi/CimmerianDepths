@@ -6,31 +6,31 @@ function Popup(x, y, image, t){ // 't' es el texto que va dentro del popup, 'x' 
         -Texto: coordenadas de la ventana de juego
     */
 
-    this.sprite = game.add.sprite(x + game.camera.x, y + game.camera.y, image);
+    this.sprite = game.add.sprite(x, y, image);
     popUpGroup.add(this.sprite);
     this.sprite.visible = false;
     this.textString = t;
-    var text;
+    this.text;
 
-    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(255,255,255)", align: "justify"}
-    that = this;
+    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(255,255,255)", align: "center"}
+    //that = this;
 
     this.show = function(){
         this.sprite.visible = true;
 
-        var x = (this.sprite.x - game.camera.x) + 20;
-        var y = (this.sprite.y - game.camera.y) + 20;
+        var x = (this.sprite.x) + 20;
+        var y = (this.sprite.y) + 20;
         game.world.bringToTop(popUpGroup);
-        text = game.add.text(x, y, this.textString, textStyle);
-        text.fixedToCamera = true;
-        this.sprite.fixedToCamera = true;
+        this.text = game.add.text(x, y, this.textString, textStyle);
+        //this.text.fixedToCamera = true;
+        //this.sprite.fixedToCamera = true;
  
     }
 
     this.hide = function(){
         this.sprite.visible = false;
-        text.fixedToCamera = false;
-        text.destroy();
+        this.text.fixedToCamera = false;
+        this.text.destroy();
     }
 
     this.changeCoord = function(x, y){
