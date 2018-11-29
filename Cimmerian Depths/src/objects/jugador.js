@@ -61,7 +61,18 @@ function Jugador(x, y, sprsheet){
                     forjado.sprite.fixedToCamera = true;
                     this.palos -= 5;
                     
+                    //Creamos el enemigo
+                    enemigo = new Enemigo(2000, 1100, 'enemy');
+
                     //MOSTRAR TEXTO: HAS CRAFTEADO UNA ANTORCHA
+                    var text = "Has crafteado una antorcha.\nAhora tienes más radio de visión";
+                    this.textItems[this.textItems.length] = new itemText(text, game.camera.width/2, (game.camera.height/2) - 200);
+                    this.textItems[this.textItems.length - 1].fixedToCamera();
+                    
+                    //MOSTRAR TEXTO: HA APARECIDO UN ENEMIGO
+                    var text = "Algo se está acercando...";
+                    this.textItems[this.textItems.length] = new itemText(text, game.camera.width/2, (game.camera.height/2) - 300);
+                    this.textItems[this.textItems.length - 1].fixedToCamera();
                 }
             }
         }
