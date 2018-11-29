@@ -3,6 +3,7 @@ CimmerianDepths.equipmentState = function (game) {
     this.recetasButton;
     this.forjadosButton;
     this.equipmentButton;
+    this.helpButton
     this.returnText;
     this.style;
 }
@@ -16,7 +17,7 @@ CimmerianDepths.equipmentState.prototype = {
     create: function () {
 
         iconsGroup = game.add.group();
-        popUpGroup= game.add.group();
+        popUpGroup = game.add.group();
 
         //Backgrounds
         //Fondo
@@ -39,29 +40,54 @@ CimmerianDepths.equipmentState.prototype = {
         this.style = { font: "25px Averia Sans Libre", fill: "rgb(180,200,20)", align: "center" };
 
         this.recetasButton = new createSpriteButton(x_offset, 100, 'recipe-icon');
-        var recetasButtonText = "Las recetas sirven para crear\n Forjados dentro de la mazmorra.\n" +
-            " son imprescindibles para llegar\n mas profundo.";
+        var recetasButtonText = 
+            " Recetas: sirven para crear     \n" + 
+            " Forjados dentro de la mazmorra.\n" +
+            " Son imprescindibles para llegar\n" +
+            " más profundo.";
         this.recetasButton.popUp = new Popup(this.recetasButton.sprite.x - 300, this.recetasButton.sprite.y,
             'infoBg', recetasButtonText);
-        this.recetasButton.popUp.sprite.scale.setTo(1, 0.5);
+        this.recetasButton.popUp.sprite.scale.setTo(1, 0.35);
 
 
         this.forjadosButton = new createSpriteButton(x_offset, 200, 'forged-icon');
 
-        var forjadosButtonText = "Podras usar los Forjados\n dentro de la mazmorra para \n" +
-            "enfrentarte a enemigos\n o interactuar con el escenario.";
+        var forjadosButtonText = 
+            " Forjados: se utilizan dentro de\n" +
+            " la mazmorra para enfrentarte a \n" +
+            " enemigos o interactuar con el  \n" +
+            " entorno.";
         this.forjadosButton.popUp = new Popup(this.forjadosButton.sprite.x - 300, this.forjadosButton.sprite.y,
             'infoBg', forjadosButtonText);
-        this.forjadosButton.popUp.sprite.scale.setTo(1, 0.5);
+        this.forjadosButton.popUp.sprite.scale.setTo(1, 0.35);
 
 
         this.equipmentButton = new createSpriteButton(x_offset, 300, "equipment-icon");
-        var equipmentButtonText = "El equipamiento afectara\n a las estadisticas del personaje, \n" +
-            " lo podras encontrar\n dentro de la mazmorra.\n  NO IMPLEMENTADO";
+        var equipmentButtonText = 
+            " Equipamiento: afectará a las   \n" +
+            " estadísticas del personaje, lo \n" +
+            " podrás encontrar dentro de la  \n" +
+            " mazmorra.\n" +  
+            " (NO DISPONIBLE)";
         this.equipmentButton.popUp = new Popup(this.equipmentButton.sprite.x - 300, this.equipmentButton.sprite.y,
             'infoBg', equipmentButtonText);
-        this.equipmentButton.popUp.sprite.scale.setTo(1, 0.5);
+        this.equipmentButton.popUp.sprite.scale.setTo(1, 0.45);
 
+//TUTORIAL
+        this.helpButton = new createSpriteButton(50, 150, 'ayuda');
+        var helpText = 
+            " Lo que tienes a la derecha son \n" + 
+            " los inventarios. Podrás usar   \n" + 
+            " los objetos que lleves en ellos\n" +
+            " dentro de la mazmorra.         \n" + 
+            " Añade el objeto que tienes     \n" +
+            " debajo al inventario de recetas\n" +
+            " arrastrándolo con el ratón";
+        this.helpButton.popUp = new Popup(this.helpButton.sprite.x, this.helpButton.sprite.y + 25, 
+            'infoBg',helpText);
+        this.helpButton.popUp.sprite.scale.setTo(1, 0.6);
+
+        //Botón de volver
         this.returnText = new createTextButton(game.width - 100, 50, "Volver", this.style,
             function () { game.state.start("playerSelectState") });
 
@@ -90,20 +116,11 @@ CimmerianDepths.equipmentState.prototype = {
         game.world.bringToTop(iconsGroup);
 
         //Opciones
-        var settings= new createSpriteButton(30,30,'ajustes');
-        var help= new createSpriteButton(30, 100, 'ayuda');
-        //TUTORIAL
-        var text = "Lo que tienes a la derecha son\n los inventarios. Podras usar los objetos que lleves\n"+
-         " en ellos dentro de la mazmorra.\nEquipa el objeto que tienes debajo\n arrastrandolo con el raton";
-         var cajon_invPopup= new Popup(30,10, 'infoBg',text);
-         cajon_invPopup.sprite.scale.setTo(1.25, 0.75);
-        // cajon_invPopup.show();
-        
-
+        this.settingsButton = game.add.sprite(30,30,'ajustes');
+        this.settingsButton.alpha = 0.3;
     },
 
     update: function () {
 
     }
 }
-
