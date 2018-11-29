@@ -93,9 +93,10 @@ function Jugador(x, y, sprsheet){
         up = down = right = left = false; //Reiniciamos variables
     }
 
-
-    this.debug = function(){ //Para debug, borrar en futuras versiones
-        //console.log(this.objeto);
+    this.checkLifePoints = function(){
+        if(this.vida <= 0){
+            game.state.start('endingState');
+        }
     }
 
 
