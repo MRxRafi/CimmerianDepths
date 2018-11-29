@@ -61,6 +61,9 @@ function Jugador(x, y, sprsheet){
                     forjado.sprite.fixedToCamera = true;
                     this.palos -= 5;
                     
+                    //Destruimos anterior popup
+                    popup1.hide();
+
                     //Creamos el enemigo
                     enemigo = new Enemigo(2000, 1100, 'enemy');
 
@@ -119,6 +122,7 @@ function Jugador(x, y, sprsheet){
             case "palos":
                 this.palos += item.numero;
                 text = "Has recogido " + item.numero + " palo/s."
+                popup.hide();
                 break;
         }
         if(text != undefined){
