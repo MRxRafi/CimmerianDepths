@@ -3,6 +3,7 @@ CimmerianDepths.dungeonState = function (game) {
 }
 
 var jugador;
+var enemigo;
 var items;
 var map;
 var interfaz;
@@ -11,6 +12,7 @@ var salida;
 var invForj, invRec;
 var forjado, recipe;
 var grupo; //Grupo de la interfaz que mantiene los sprites por encima
+var enemy_collision;
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -19,6 +21,8 @@ CimmerianDepths.dungeonState.prototype = {
     },
 
     create: function () {
+        enemy_collision = false;
+        
         //Límites del mundo para la cámara
         game.world.setBounds(0, 0, 2240, 2240);
 
@@ -46,7 +50,13 @@ CimmerianDepths.dungeonState.prototype = {
     update: function () {
         jugador.updateInputs();
         jugador.updateAnimations();
-
+        jugador.checkLifePoints();
+        
+        if(enemigo){
+            enemigo.updateMovement(jugador);
+            enemigo.updateAnimations();
+        }
+        
         checkCollisions();
 
         for(i = 0; i < jugador.textItems.length; i++){
@@ -73,6 +83,19 @@ function checkCollisions(){
         }
     }
 
+    //Colisión jugador - enemigo
+    if(enemigo && jugador){
+        if(game.physics.arcade.overlap(jugador.sprite, enemigo.sprite)){
+            if(!enemy_collision){
+                setTimeout(function(){
+                    jugador.vida -= 10;
+                    enemy_collision = false;
+                }, 500);
+            }
+            enemy_collision = true;
+        }
+    }
+    
     //Colisión jugador - mapa
     game.physics.arcade.collide(jugador.sprite, map.layers[0]);
     game.physics.arcade.collide(jugador.sprite, map.layers[1]);
