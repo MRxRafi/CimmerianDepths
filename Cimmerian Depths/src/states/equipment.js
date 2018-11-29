@@ -44,7 +44,7 @@ CimmerianDepths.equipmentState.prototype = {
             " Recetas: sirven para crear     \n" + 
             " Forjados dentro de la mazmorra.\n" +
             " Son imprescindibles para llegar\n" +
-            " más profundo.";
+            " a mayor profundidad.";
         this.recetasButton.popUp = new Popup(this.recetasButton.sprite.x - 300, this.recetasButton.sprite.y,
             'infoBg', recetasButtonText);
         this.recetasButton.popUp.sprite.scale.setTo(1, 0.35);
@@ -65,7 +65,7 @@ CimmerianDepths.equipmentState.prototype = {
         this.equipmentButton = new createSpriteButton(x_offset, 300, "equipment-icon");
         var equipmentButtonText = 
             " Equipamiento: afectará a las   \n" +
-            " estadísticas del personaje, lo \n" +
+            " estadísticas del personaje. Lo \n" +
             " podrás encontrar dentro de la  \n" +
             " mazmorra.\n" +  
             " (NO DISPONIBLE)";
@@ -124,3 +124,4 @@ CimmerianDepths.equipmentState.prototype = {
 
     }
 }
+
