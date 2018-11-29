@@ -69,8 +69,13 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('botonEquipar', "assets/Interfaz/botonEquipar.png");
         game.load.image('inventarioBg', "assets/Interfaz/menuInventario.png");
         game.load.image('statsBg', "assets/Interfaz/menuEstadisticas.png");
+        game.load.image('infoBg', "assets/Interfaz/info.png");
         game.load.image('recipe-icon', "assets/receta.png");
         game.load.image('torch-recipe', "assets/receta antorcha.png");
+        game.load.image('forged-icon', "assets/forjado.png");
+        game.load.image('equipment-icon', "assets/equipamiento.png");
+        game.load.image('ajustes', "assets/Interfaz/ajustes.png");
+        game.load.image('ayuda', "assets/Interfaz/Ayuda.png");
         // Assets Dungeon
         game.load.spritesheet('player', "/assets/personajeSpSheet.png", 64, 96, 28); //Personaje
         game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
@@ -85,3 +90,4 @@ CimmerianDepths.preloadState.prototype = {
 
     }
 }
+
