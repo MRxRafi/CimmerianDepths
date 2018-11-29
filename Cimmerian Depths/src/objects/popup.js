@@ -7,26 +7,28 @@ function Popup(x, y, image, t){ // 't' es el texto que va dentro del popup, 'x' 
     */
 
     this.sprite = game.add.sprite(x + game.camera.x, y + game.camera.y, image);
+    popUpGroup.add(this.sprite);
     this.sprite.visible = false;
-    this.sprite.fixedToCamera = true;
     this.textString = t;
     var text;
 
-    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(120,120,120)"}
+    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(255,255,255)", align: "center"}
     that = this;
 
     this.show = function(){
-        that.sprite.visible = true;
+        this.sprite.visible = true;
 
-        var x = (that.sprite.x - game.camera.x) + 5;
-        var y = (that.sprite.y - game.camera.y) + 5;
-
-        text = game.add.text(x, y, that.textString, textStyle);
+        var x = (this.sprite.x - game.camera.x) + 20;
+        var y = (this.sprite.y - game.camera.y) + 20;
+        game.world.bringToTop(popUpGroup);
+        text = game.add.text(x, y, this.textString, textStyle);
         text.fixedToCamera = true;
+        this.sprite.fixedToCamera = true;
+ 
     }
 
     this.hide = function(){
-        that.sprite.visible = false;
+        this.sprite.visible = false;
         text.fixedToCamera = false;
         text.destroy();
     }
