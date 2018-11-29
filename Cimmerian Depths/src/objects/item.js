@@ -30,14 +30,19 @@ function Item(num, posx, posy, tipo, spr){
 function itemText(texto, posx, posy){
     var style= {fill:"rgb(255,255,255)", font: "20px Averia Sans Libre", align:"center"};
     var miTexto = game.add.text(posx, posy, texto, style);
+    grupo.add(miTexto);
     miTexto.anchor.x = 0.5;
 
     this.update = function(){ //El texto desaparece poco a poco y va subiendo
-        miTexto.alpha -= 0.01;
+        miTexto.alpha -= 0.006;
         miTexto.y -= 0.15;
         if(miTexto.alpha <= 0.01){
+            grupo.remove(miTexto);
             miTexto.destroy();
             delete this;
         }
+    }
+    this.fixedToCamera = function(){
+        miTexto.fixedToCamera = true;
     }
 }
