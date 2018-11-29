@@ -76,16 +76,17 @@ CimmerianDepths.equipmentState.prototype = {
 //TUTORIAL
         this.helpButton = new createSpriteButton(50, 150, 'ayuda');
         var helpText = 
-            " Lo que tienes a la derecha son \n" + 
+            " -Lo que tienes a la derecha son\n" + 
             " los inventarios. Podrás usar   \n" + 
             " los objetos que lleves en ellos\n" +
             " dentro de la mazmorra.         \n" + 
-            " Añade el objeto que tienes     \n" +
-            " debajo al inventario de recetas\n" +
-            " arrastrándolo con el ratón";
+            " -Añade la receta de antorcha   \n" +
+            " que tienes debajo al inventario\n" +
+            " de recetas, arrastrándola con  \n" +
+            " el ratón";
         this.helpButton.popUp = new Popup(this.helpButton.sprite.x, this.helpButton.sprite.y + 25, 
             'infoBg',helpText);
-        this.helpButton.popUp.sprite.scale.setTo(1, 0.6);
+        this.helpButton.popUp.sprite.scale.setTo(1, 0.65);
 
         //Botón de volver
         this.returnText = new createTextButton(game.width - 100, 50, "Volver", this.style,
@@ -124,4 +125,3 @@ CimmerianDepths.equipmentState.prototype = {
 
     }
 }
-
