@@ -26,22 +26,27 @@ function createTextButton(posX, posY, text, style, onClickCallback) {
 
 
 function createSpriteButton(x, y, sprite_name, onClickCallback) {
+    this.popUp;
     this.sprite = game.add.sprite(x, y, sprite_name);
     this.sprite.inputEnabled = true;
-    this.sprite.anchor.x= 0.5; this.sprite.anchor.y= 0.5;
+    this.sprite.anchor.x = 0.5; this.sprite.anchor.y = 0.5;
 
     if (onClickCallback)
         this.sprite.events.onInputDown.add(onClickCallback, this);
 
     this.setOnClick = function (callback) {
-        this.text.events.onInputDown.add(callback, this);
+        this.sprite.events.onInputDown.add(callback, this);
     }
 
     this.sprite.events.onInputOut.add(function () {
         this.sprite.scale.setTo(1, 1);
+        if(this.popUp)
+        this.popUp.hide();
     }, this);
 
     this.sprite.events.onInputOver.add(function () {
         this.sprite.scale.setTo(1.2, 1.2);
+        if(this.popUp)
+        this.popUp.show();
     }, this);
 }
