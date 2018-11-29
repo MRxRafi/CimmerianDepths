@@ -13,6 +13,9 @@ var invForj, invRec;
 var forjado, recipe;
 var grupo; //Grupo de la interfaz que mantiene los sprites por encima
 var enemy_collision;
+var popup;
+var popup1;
+var popup2;
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -22,7 +25,8 @@ CimmerianDepths.dungeonState.prototype = {
 
     create: function () {
         enemy_collision = false;
-        
+        //popUpGroup = game.add.group();
+
         //Límites del mundo para la cámara
         game.world.setBounds(0, 0, 2240, 2240);
 
@@ -37,9 +41,21 @@ CimmerianDepths.dungeonState.prototype = {
         game.physics.enable(salida, Phaser.Physics.ARCADE);
         salida.body.immovable = true;
         
+        //PopUp tutorial
+        var text = "Para recoger un material,\nacércate y pulsa la\nbarra espaciadora";
+        popup = new Popup(items[0].sprite.x - 80, items[0].sprite.y - 100, 'infoBg', text);
+        //popup = new Popup(300, 300, 'infoBg', text);
+        popup.show();
+
+        //PopUp tutorial 2
+        var text = "Para salir del nivel,\nacércate y pulsa la\nbarra espaciadora";
+        popup2 = new Popup(salida.x - 60, salida.y - 100, 'infoBg', text);
+        //popup = new Popup(300, 300, 'infoBg', text);
+        popup2.show();
+
         jugador = new Jugador(400, 300, 'player');
         jugador.createInputs();
-
+        
         interfaz = new Interfaz(jugador);
         interfaz.create();
         
@@ -56,7 +72,6 @@ CimmerianDepths.dungeonState.prototype = {
             enemigo.updateMovement(jugador);
             enemigo.updateAnimations();
         }
-        
         checkCollisions();
 
         for(i = 0; i < jugador.textItems.length; i++){
@@ -73,10 +88,21 @@ function checkCollisions(){
         if(items[i].sprite && jugador.sprite){
             if(game.physics.arcade.collide(jugador.sprite, items[i].sprite) && jugador.space.isDown){
                 jugador.pickUp(items[i]);
+
+                //PopUp tutorial
+                var text = "Pulse el click derecho del ratón\npara construir una antorcha.";
+                popup1 = new Popup(jugador.sprite.x - 80, jugador.sprite.y - 50, 'infoBg', text);
+                //popup = new Popup(300, 300, 'infoBg', text);
+                popup1.show();
                 //jugador.debug();
             }
         }
     }
+    if(popup1){
+        popup1.text.x = jugador.sprite.x - 80;
+        popup1.text.y = jugador.sprite.y - 50;
+    }
+
     if(salida && jugador.sprite){
         if(game.physics.arcade.collide(jugador.sprite, salida) && jugador.space.isDown){
             game.state.start('endingState');
