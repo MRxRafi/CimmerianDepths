@@ -78,7 +78,7 @@ function Interfaz(jugador){
         invRec.Show();
         for(var i = 0; i < invRec.cols; i++){
             rec = personaje.recipeInventory.iconNamesArray[0][i];
-            if(rec === "receta_antorcha"){
+            if(rec === "torch-recipe"){
                 //Variable "recipe" es global en dungeon.js
                 var x = invRec.icons[0][i].background.x;
                 var y = invRec.icons[0][i].background.y;
