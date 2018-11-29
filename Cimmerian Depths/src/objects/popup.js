@@ -12,7 +12,7 @@ function Popup(x, y, image, t){ // 't' es el texto que va dentro del popup, 'x' 
     this.textString = t;
     var text;
 
-    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(255,255,255)", align: "center"}
+    var textStyle = { font: '16px Averia Sans Libre', fill:"rgb(255,255,255)", align: "justify"}
     that = this;
 
     this.show = function(){
