@@ -75,7 +75,9 @@ CimmerianDepths.playerSelectState.prototype = {
             y += y_paddin;
         }
 
-
+        this.settingsButton = game.add.sprite(30,30,'ajustes');
+        this.settingsButton.alpha = 0.3;
+        
         this.onOverTextStyle= {fill:"rgb(255,255,255)", font: "40px Averia Sans Libre", align:"center"};
         this.onOutTextStyle= {fill:"rgb(180,200,20)", font: "40px Averia Sans Libre", align:"center"};
  
