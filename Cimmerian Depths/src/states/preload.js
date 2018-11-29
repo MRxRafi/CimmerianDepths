@@ -69,7 +69,8 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('botonEquipar', "assets/Interfaz/botonEquipar.png");
         game.load.image('inventarioBg', "assets/Interfaz/menuInventario.png");
         game.load.image('statsBg', "assets/Interfaz/menuEstadisticas.png");
-
+        game.load.image('recipe-icon', "assets/receta.png");
+        game.load.image('torch-recipe', "assets/receta antorcha.png");
         // Assets Dungeon
         game.load.spritesheet('player', "/assets/personajeSpSheet.png", 64, 96, 28); //Personaje
         game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
