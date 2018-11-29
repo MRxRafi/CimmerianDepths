@@ -10,7 +10,7 @@ CimmerianDepths.initialScreenState = function (game) {
 }
 var personaje;
 var pressed;
-
+var popUpGroup;
 CimmerianDepths.initialScreenState.prototype = {
 
     preload: function () {
