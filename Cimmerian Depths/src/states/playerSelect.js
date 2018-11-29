@@ -80,10 +80,10 @@ CimmerianDepths.playerSelectState.prototype = {
         this.onOutTextStyle= {fill:"rgb(180,200,20)", font: "40px Averia Sans Libre", align:"center"};
  
 
-        this.equipar= new createButton(game.width*0.15, game.height*0.66, "EQUIPAR", this.onOutTextStyle,
+        this.equipar= new createTextButton(game.width*0.15, game.height*0.66, "EQUIPAR", this.onOutTextStyle,
         function(){game.state.start("equipmentState")});
         
-         this.jugar= new createButton(game.width/2, game.height-50, "JUGAR",this.onOutTextStyle,
+         this.jugar= new createTextButton(game.width/2, game.height-50, "JUGAR",this.onOutTextStyle,
          function(){game.state.start("dungeonState")});
     },
 
