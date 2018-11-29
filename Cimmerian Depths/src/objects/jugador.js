@@ -24,6 +24,8 @@ function Jugador(x, y, sprsheet){
 
     //FUNCIONES
     this.createInputs = function () {
+        game.input.mouse.capture = true;
+
         this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
         this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
         this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
@@ -47,6 +49,21 @@ function Jugador(x, y, sprsheet){
         if (this.sKey.isDown && !this.wKey.isDown) {
             down = true;
             this.sprite.body.velocity.y = 300;
+        }
+        if(game.input.activePointer.rightButton.isDown){ //Crafteo de antorcha prototipo
+            if(recipe != undefined){
+                if(this.palos >= 5){
+                    //Crafteamos forjado
+                    var x = invForj.icons[0][0].background.x - game.camera.x;
+                    var y = invForj.icons[0][0].background.y - game.camera.y;
+                    forjado = new Forged(x, y, "antorcha");
+                    grupo.add(forjado.sprite);
+                    forjado.sprite.fixedToCamera = true;
+                    this.palos -= 5;
+                    
+                    //MOSTRAR TEXTO: HAS CRAFTEADO UNA ANTORCHA
+                }
+            }
         }
 
         //Activamos animaciones left o right

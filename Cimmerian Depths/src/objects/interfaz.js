@@ -1,13 +1,11 @@
-
 function Interfaz(jugador){
-    var grupo; //Grupo de la interfaz que mantiene los sprites por encima
     var oscuridad;
+    var oscuridad_antorcha;
     var healthBar;
     var barConfig;
     var anteriorVida;
     var barExp, barMana;
     var barForj, barRec;
-    var invForj, invRec;
     var mochila;
     var bufos = new Array();
     var texto_estadisticas = new Array();
@@ -17,11 +15,16 @@ function Interfaz(jugador){
         grupo = game.add.group();
 
         ////////////CAMPO DE VISION///////////////
-        oscuridad = game.add.sprite(0, 0, 'oscuridad_antorcha');
+        //Sin antorcha
+        oscuridad = game.add.sprite(0, 0, 'oscuridad');
+        oscuridad.anchor.setTo(0.5);
+        grupo.add(oscuridad);
+        //Con antorcha
+        /*oscuridad = game.add.sprite(0, 0, 'oscuridad_antorcha');
         oscuridad.animations.add('anim', [0,1,2,3]);
         oscuridad.animations.play('anim', 6, true);
         oscuridad.anchor.setTo(0.5);
-        grupo.add(oscuridad);
+        grupo.add(oscuridad);*/
         //////////FIN CAMPO DE VISION/////////////
 
         ////// MOCHILA //////
@@ -61,49 +64,67 @@ function Interfaz(jugador){
         }
         ////// FIN BUFOS //////
 
-        ////// BARRA DE FORJADOS //////
-        barForj = game.add.sprite(game.camera.x + 210, game.camera.y + game.camera.height - 74, 'inventarioBg');
-        barForj.anchor.x = 0.5; barForj.anchor.y = 0.5;
-        barForj.scale.setTo(1.15, 1.15);
-        barForj.alpha = 0.6;
-        grupo.add(barForj);
-        barForj.fixedToCamera = true;
-
-        invForj = new Inventario(barForj.x - 125, barForj.y, 10, 10, 1, 5, 52);
-        
-        var forjado;
-        for(var i = 0; i < invForj.cols; i++){
-            if(personaje.forgedInventory.iconNamesArray[0][i] != undefined) { forjado = personaje.forgedInventory.iconNamesArray[0][i]; invForj.addItem(0,i,forjado); }
-        }
-        invForj.Show();
-        for(var i = 0; i < invForj.cols; i++){
-            grupo.add(invForj.icons[0][i].background);
-            invForj.icons[0][i].background.fixedToCamera = true;
-        }
-        
-        ////// FIN BARRA DE FORJADOS //////
-
         ////// BARRA DE RECETAS //////
-        barRec = game.add.sprite(game.camera.width + game.camera.x - 74, game.camera.y + 270, 'inventarioBg');
+        barRec = game.add.sprite(game.camera.x + 210, game.camera.y + game.camera.height - 74, 'inventarioBg');
         barRec.anchor.x = 0.5; barRec.anchor.y = 0.5;
-        barRec.scale.setTo(1.1, 1.1);
-        barRec.angle = 90;
+        barRec.scale.setTo(1.15, 1.15);
         barRec.alpha = 0.6;
         grupo.add(barRec);
         barRec.fixedToCamera = true;
 
-        invRec = new Inventario(barRec.x, barRec.y - 125, 10, 10, 5, 1, 52);
+        invRec = new Inventario(barRec.x - 125, barRec.y, 10, 10, 1, 5, 52);
         
-        var recipe;
-        for(var i = 0; i < invRec.rows; i++){
-            if(personaje.recipeInventory.iconNamesArray[0][i] != undefined) { recipe = personaje.recipeInventory.iconNamesArray[0][i]; invRec.addItem(i,0,recipe); }
-        }
+        var rec;
         invRec.Show();
-        for(var i = 0; i < invRec.rows; i++){
-            grupo.add(invRec.icons[i][0].background);
-            invRec.icons[i][0].background.fixedToCamera = true;
+        for(var i = 0; i < invRec.cols; i++){
+            rec = personaje.recipeInventory.iconNamesArray[0][i];
+            if(rec === "receta_antorcha"){
+                //Variable "recipe" es global en dungeon.js
+                var x = invRec.icons[0][i].background.x;
+                var y = invRec.icons[0][i].background.y;
+                recipe = new Recipe(x, y, rec);
+            }
+            grupo.add(invRec.icons[0][i].background);
+            invRec.icons[0][i].background.fixedToCamera = true;
+        }
+        if(recipe != undefined){
+            grupo.add(recipe.sprite);
+            recipe.sprite.fixedToCamera = true;
         }
         ////// FIN BARRA DE RECETAS //////
+
+        ////// BARRA DE FORJADOS //////
+        barForj = game.add.sprite(game.camera.width + game.camera.x - 74, game.camera.y + 270, 'inventarioBg');
+        barForj.anchor.x = 0.5; barForj.anchor.y = 0.5;
+        barForj.scale.setTo(1.1, 1.1);
+        barForj.angle = 90;
+        barForj.alpha = 0.6;
+        grupo.add(barForj);
+        barForj.fixedToCamera = true;
+
+        invForj = new Inventario(barForj.x, barForj.y - 125, 10, 10, 5, 1, 52);
+        
+        var forj;
+        invForj.Show();
+        for(var i = 0; i < invForj.rows; i++){
+            if(personaje.forgedInventory.iconNamesArray[0][i] != undefined) {
+                forj = personaje.forgedInventory.iconNamesArray[0][i];
+                if(forj === "antorcha"){
+                    //Variable "forjado" es global en dungeon.js
+                var x = invForj.icons[i][0].background.x;
+                var y = invForj.icons[i][0].background.y;
+                forjado = new Forged(x, y, forj);
+                    
+                }
+            }
+            grupo.add(invForj.icons[i][0].background);
+            invForj.icons[i][0].background.fixedToCamera = true;
+        }
+        if(forjado != undefined){
+            grupo.add(forjado.sprite);
+            forjado.sprite.fixedToCamera = true;
+        }
+        ////// FIN BARRA DE FORJADOS //////
 
         ////// ESTADÍSTICAS //////
         style = { font: "25px Averia Sans Libre", fill: "#a8a8a8", align: "left" };
@@ -154,8 +175,30 @@ function Interfaz(jugador){
     }
 
     this.update = function(){
-        oscuridad.x = jugador.sprite.x + (jugador.sprite.width/2);
-        oscuridad.y = jugador.sprite.y + (jugador.sprite.height/2);
+        //Si existe el forjado antorcha entonces creamos la animación de oscuridad y la actualizamos
+        if(forjado != undefined){
+            if(oscuridad_antorcha === undefined){
+                //Destruimos la oscuridad normal
+                grupo.remove(oscuridad);
+                oscuridad.destroy();
+
+                //Creamos oscuridad antorcha
+                oscuridad_antorcha = game.add.sprite(0, 0, 'oscuridad_antorcha');
+                oscuridad_antorcha.animations.add('anim', [0,1,2,3]);
+                oscuridad_antorcha.animations.play('anim', 6, true);
+                oscuridad_antorcha.anchor.setTo(0.5);
+                oscuridad_antorcha.x = jugador.sprite.x + (jugador.sprite.width/2);
+                oscuridad_antorcha.y = jugador.sprite.y + (jugador.sprite.height/2);
+                grupo.add(oscuridad_antorcha, false, 0);
+            } else {
+                oscuridad_antorcha.x = jugador.sprite.x + (jugador.sprite.width/2);
+                oscuridad_antorcha.y = jugador.sprite.y + (jugador.sprite.height/2);
+            }
+        } else {
+            oscuridad.x = jugador.sprite.x + (jugador.sprite.width/2);
+            oscuridad.y = jugador.sprite.y + (jugador.sprite.height/2);
+        }
+        
 
         if(anteriorVida != jugador.vida){
             healthBar.setPercent((jugador.vida * 100)/jugador.maxVida);

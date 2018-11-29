@@ -64,10 +64,10 @@ CimmerianDepths.equipmentState.prototype = {
 
         //Cajon Recetas (o de lo que sea)
  
-        personaje.createCajonForged(60, game.height*0.4+100, 3, 3, 4, 5, 52);
+        personaje.createCajonRecipes(60, game.height*0.4+100, 3, 3, 4, 5, 52);
         //personaje.cajonForged= new Inventario(60, game.height*0.4+100, 3, 3, 4, 5, 52);
-        personaje.addToCajonForged(0,0,'antorcha');
-        personaje.cajonForged.Show();
+        personaje.addToCajonRecipes(0,0,'receta_antorcha');
+        personaje.cajonRecipes.Show();
 
         game.world.bringToTop(iconsGroup);
 

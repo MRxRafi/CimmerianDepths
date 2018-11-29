@@ -8,6 +8,9 @@ var map;
 var interfaz;
 var oscuridad;
 var salida;
+var invForj, invRec;
+var forjado, recipe;
+var grupo; //Grupo de la interfaz que mantiene los sprites por encima
 
 CimmerianDepths.dungeonState.prototype = {
 
@@ -30,7 +33,7 @@ CimmerianDepths.dungeonState.prototype = {
         game.physics.enable(salida, Phaser.Physics.ARCADE);
         salida.body.immovable = true;
         
-        jugador = new Jugador(300, 300, 'player');
+        jugador = new Jugador(400, 300, 'player');
         jugador.createInputs();
 
         interfaz = new Interfaz(jugador);
