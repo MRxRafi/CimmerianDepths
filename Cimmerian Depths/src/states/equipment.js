@@ -8,7 +8,6 @@ CimmerianDepths.equipmentState = function (game) {
     this.style;
 }
 var iconsGroup;
-var popUpGroup;
 CimmerianDepths.equipmentState.prototype = {
 
     preload: function () {
