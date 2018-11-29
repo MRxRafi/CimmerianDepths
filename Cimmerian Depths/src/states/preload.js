@@ -78,6 +78,7 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('ayuda', "assets/Interfaz/Ayuda.png");
         // Assets Dungeon
         game.load.spritesheet('player', "/assets/personajeSpSheet.png", 64, 96, 28); //Personaje
+        game.load.spritesheet('enemy', "/assets/ghostSpSheet.png", 64, 96, 20); //Enemigo
         game.load.image('exp', "/assets/barraExp.png"); //Barra de experiencia y maná
         game.load.image('bufo', "/assets/bufo.png"); //Bufos
         //Bufo es un género de anfibios anuros de la familia Bufonidae que incluye, entre otros, al sapo europeo común.
