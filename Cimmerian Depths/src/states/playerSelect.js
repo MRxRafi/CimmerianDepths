@@ -22,6 +22,8 @@ CimmerianDepths.playerSelectState.prototype = {
     },
 
     create: function () {
+        this.settingsButton = game.add.sprite(30,30,'ajustes');
+        this.settingsButton.alpha = 0.3;
         //Creo un personaje segun el personaje seleccionado
         if (!personaje)
             personaje = new Personaje();
