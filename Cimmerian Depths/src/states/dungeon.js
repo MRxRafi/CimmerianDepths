@@ -41,6 +41,11 @@ CimmerianDepths.dungeonState.prototype = {
         game.physics.enable(salida, Phaser.Physics.ARCADE);
         salida.body.immovable = true;
         
+        //Controles
+        var controls = game.add.sprite(320,256,'WASD');
+        controls.alpha = 0.7;
+        game.physics.enable(controls, Phaser.Physics.ARCADE);
+        controls.body.immovable = true;
         //PopUp tutorial
         var text = "Para recoger un material,\nacércate y pulsa la\nbarra espaciadora";
         popup = new Popup(items[0].sprite.x - 80, items[0].sprite.y - 100, 'infoBg', text);

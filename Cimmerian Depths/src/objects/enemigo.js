@@ -14,7 +14,7 @@ function Enemigo(x, y, sprsheet){
         this.sprite.body.velocity.y = 0;
 
         //El fantasma se mueve según la posición del jugador
-        game.physics.arcade.moveToObject(this.sprite, jugador.sprite, 200);
+        game.physics.arcade.moveToObject(this.sprite, jugador.sprite, 250);
 
         //Calculamos la velocidad del objeto para ver qué animación debemos poner
         

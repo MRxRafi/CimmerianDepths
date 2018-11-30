@@ -88,7 +88,7 @@ CimmerianDepths.playerSelectState.prototype = {
         var notYetBool = false;
         var text = "¡Aun tienes objetos que\n puedes equipar a tu personaje!";
         var notYetBuddy = new Popup(game.width * 0.5 - 136, game.height * 0.5, 'infoBg', text);
-        notYetBuddy.sprite.scale.setTo(1, 0.5);
+        notYetBuddy.sprite.scale.setTo(1, 0.25);
         notYetBuddy.sprite.events.onInputOut.add(function () {
             // notYetBuddy.hide();
         }, this);

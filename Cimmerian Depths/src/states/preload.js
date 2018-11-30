@@ -76,6 +76,7 @@ CimmerianDepths.preloadState.prototype = {
         game.load.image('equipment-icon', "assets/equipamiento.png");
         game.load.image('ajustes', "assets/Interfaz/ajustes.png");
         game.load.image('ayuda', "assets/Interfaz/Ayuda.png");
+        game.load.image('WASD', "assets/Interfaz/WASD.png");
         // Assets Dungeon
         game.load.spritesheet('player', "/assets/personajeSpSheet.png", 64, 96, 28); //Personaje
         game.load.spritesheet('enemy', "/assets/ghostSpSheet.png", 64, 96, 20); //Enemigo
